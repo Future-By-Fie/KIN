@@ -1,0 +1,6 @@
+import { Link } from '@tanstack/react-router';
+import { ArrowUpRight, Fingerprint, LockKeyhole } from 'lucide-react';
+import type { KinMatch } from '@/lib/kin/types';
+export function MatchCard({ match, featured = false }: { match: KinMatch; featured?: boolean }) {
+  return <Link to="/match/$id" params={{ id: match.id }} className={`match-card ${featured ? 'featured' : ''}`}><div className="grid grid-cols-[42px_minmax(0,1fr)_auto] items-center gap-3"><span className="match-symbol"><Fingerprint size={22} /></span><div className="min-w-0"><h3 className="font-medium text-sm">Possible {match.relationship}</h3><p className="mt-1 text-[11px] text-muted-foreground">{match.distance} away <span className="mx-1">·</span> Identity private</p></div><ArrowUpRight size={18} className="text-muted-foreground shrink-0" /></div><div className="mt-4 flex justify-between items-center"><span className="text-[10px] text-muted-foreground flex items-center gap-1.5"><LockKeyhole size={10} />Connection confidence</span><span className={`text-xs font-medium ${featured ? 'text-primary' : 'text-foreground'}`}>{match.confidence}%</span></div><div className="confidence-track mt-2"><div className={`confidence-fill confidence-${match.confidence}`} /></div></Link>;
+}
