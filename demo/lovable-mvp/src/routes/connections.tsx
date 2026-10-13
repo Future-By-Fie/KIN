@@ -7,7 +7,7 @@ import { useDemo } from "@/components/kin/demo-context";
 import { getConnections } from "@/lib/kin/service";
 import { pageHead } from "@/lib/kin/queries";
 import type { RevealedConnection } from "@/lib/kin/types";
-import majaPortrait from "@/assets/maja.jpg";
+import majaPortrait from "@/assets/maja.svg";
 export const Route = createFileRoute("/connections")({
   head: () =>
     pageHead(
