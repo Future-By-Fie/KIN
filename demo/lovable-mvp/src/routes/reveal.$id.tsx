@@ -21,7 +21,7 @@ import {
 import { pageHead } from "@/lib/kin/queries";
 import { canRequestReveal } from "@/lib/kin/discovery";
 import type { RevealedConnection } from "@/lib/kin/types";
-import majaPortrait from "@/assets/maja.jpg";
+import majaPortrait from "@/assets/maja.svg";
 export const Route = createFileRoute("/reveal/$id")({
   head: () =>
     pageHead(

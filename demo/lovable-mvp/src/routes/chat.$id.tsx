@@ -26,7 +26,7 @@ import {
 } from "@/lib/kin/service";
 import { pageHead } from "@/lib/kin/queries";
 import type { Message, RevealedConnection } from "@/lib/kin/types";
-import majaPortrait from "@/assets/maja.jpg";
+import majaPortrait from "@/assets/maja.svg";
 export const Route = createFileRoute("/chat/$id")({
   head: () =>
     pageHead(
