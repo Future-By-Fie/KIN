@@ -6,6 +6,8 @@ import {
   acceptConnection,
   getRevealedConnection,
   sendMessage,
+  getMessages,
+  blockMatch,
   cancelConnection,
   resetDemo,
 } from "./service";
@@ -60,6 +62,27 @@ describe("Synthetic KIN consent rules", () => {
     await expect(sendMessage("maja", "Hello")).rejects.toThrow("Connect mutually");
     await acceptConnection("maja");
     expect(await sendMessage("maja", "Hello")).toMatchObject({ text: "Hello", sender: "you" });
+  });
+  it("denies message reads until mutual consent", async () => {
+    expect(await getMessages("maja")).toEqual([]);
+    await requestConnection("maja");
+    expect(await getMessages("maja")).toEqual([]);
+    await acceptConnection("maja");
+    await sendMessage("maja", "Hello");
+    expect(await getMessages("maja")).toMatchObject([{ text: "Hello" }]);
+  });
+  it("clears messages on cancellation and blocks further access", async () => {
+    await requestConnection("maja");
+    await acceptConnection("maja");
+    await sendMessage("maja", "Hello");
+    await cancelConnection("maja");
+    expect(await getMessages("maja")).toEqual([]);
+    await requestConnection("maja");
+    await acceptConnection("maja");
+    await sendMessage("maja", "Again");
+    await blockMatch("maja");
+    expect(await getMessages("maja")).toEqual([]);
+    await expect(sendMessage("maja", "No")).rejects.toThrow();
   });
   it("cancellation removes consent and requires a fresh handshake", async () => {
     await requestConnection("maja");
