@@ -1,39 +1,24 @@
-name: Repository quality
-
+name: KIN quality checks
 on:
   push:
     branches: [main, "feature/**"]
   pull_request:
-
 jobs:
-  detect-and-validate:
+  validate:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: demo/lovable-mvp
     steps:
       - uses: actions/checkout@v4
-      - name: Check project structure
-        id: project
-        shell: bash
-        run: |
-          if [ -f package.json ]; then
-            echo "node_project=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "node_project=false" >> "$GITHUB_OUTPUT"
-            echo "::notice::No root package.json. Node checks cannot run until the application is present at the repository root."
-          fi
       - uses: actions/setup-node@v4
-        if: steps.project.outputs.node_project == 'true'
         with:
-          node-version: '22'
-      - name: Install
-        if: steps.project.outputs.node_project == 'true'
-        run: |
-          if [ -f package-lock.json ]; then npm ci; else npm install; fi
+          node-version: "22"
+      - name: Install dependencies
+        run: npm install
       - name: Lint
-        if: steps.project.outputs.node_project == 'true'
-        run: npm run lint --if-present
+        run: npm run lint
       - name: Test
-        if: steps.project.outputs.node_project == 'true'
-        run: npm test --if-present -- --run
+        run: npm test
       - name: Build
-        if: steps.project.outputs.node_project == 'true'
-        run: npm run build --if-present
+        run: npm run build
