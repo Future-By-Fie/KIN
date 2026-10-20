@@ -81,7 +81,8 @@ export async function cancelConnection(id: string) {
   messages.delete(id);
 }
 export async function getMessages(id: string) {
-  return [...(messages.get(id) ?? [])];
+  if (!(await getRevealedConnection(id))) return [];
+  return (messages.get(id) ?? []).map((message) => ({ ...message }));
 }
 export async function sendMessage(
   matchId: string,
