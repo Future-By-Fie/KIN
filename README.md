@@ -54,3 +54,7 @@ real kinship inference. Consent from the other person is faked with a timer.
 3. Privacy/legal review (GDPR, special-category data) before any real ancestry or
    location data is considered.
 4. End-to-end tests (Playwright) for the full journey.
+
+## Collaboration & rights
+
+This public repository is available for evaluation; it is **not currently offered under an open-source license**. We are open to conversations with potential technical and commercial partners, but contributions and reuse require prior written agreement. See [Collaboration & intellectual property](COLLABORATION.md) and [Build with us](https://www.future-by-fie.com/#partners).
