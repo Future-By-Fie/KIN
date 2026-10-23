@@ -6,6 +6,8 @@ import {
   acceptConnection,
   getRevealedConnection,
   sendMessage,
+  getMessages,
+  blockMatch,
   cancelConnection,
   resetDemo,
 } from "./service";
@@ -60,6 +62,19 @@ describe("Synthetic KIN consent rules", () => {
     await expect(sendMessage("maja", "Hello")).rejects.toThrow("Connect mutually");
     await acceptConnection("maja");
     expect(await sendMessage("maja", "Hello")).toMatchObject({ text: "Hello", sender: "you" });
+  });
+  it("does not expose messages without mutual consent", async () => {
+    await expect(getMessages("maja")).rejects.toThrow("Connect mutually");
+    await requestConnection("maja");
+    await expect(getMessages("maja")).rejects.toThrow("Connect mutually");
+    await acceptConnection("maja");
+    await sendMessage("maja", "private hello");
+    const history = await getMessages("maja");
+    expect(history).toHaveLength(1);
+    history[0].text = "modified locally";
+    expect((await getMessages("maja"))[0].text).toBe("private hello");
+    await blockMatch("maja");
+    await expect(getMessages("maja")).rejects.toThrow("Connect mutually");
   });
   it("cancellation removes consent and requires a fresh handshake", async () => {
     await requestConnection("maja");
