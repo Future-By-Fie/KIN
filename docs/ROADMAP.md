@@ -1,24 +1,51 @@
-# KIN — Roadmap
+# KIN — Development Roadmap
 
-## v0.1 — Concept MVP
+This roadmap reflects the current product direction. It is a plan, not a claim that the listed work is implemented.
 
-**Built.** Onboarding, approximate-location concept, KIN Radar, synthetic nearby matches, possible relationships, connection confidence, mutual reveal, messaging, privacy controls, demo mode and API-ready mock services.
+## v0.1 — Existing Radar prototype
 
-## v0.2 — Wow pass
+The existing exploratory prototype includes onboarding, a simulated nearby-discovery flow, synthetic matches, mutual-reveal demo, messaging, privacy controls and mock services.
 
-1. **Living radar** — make discovery feel alive rather than like a dashboard.
-2. **More emotional matching** — make curiosity and possibility more important than a raw score.
-3. **Signature reveal** — turn mutual reveal into the memorable product moment.
-4. **KIN map interaction** — explore a richer geographic layer while preserving approximate location.
-5. **Demo mode** — polish a 20–30 second end-to-end experience for pitch, TikTok, website and portfolio.
-6. **Case documentation** — continue documenting problem → insight → concept → UX → architecture → prototype → future integration.
+**Limitations:** no real DNA analysis, verified relatives, real location matching, production authentication, server-enforced consent, moderation backend or production database. Demo scores, distances and matches are fictional.
 
-## Future exploration
+Preserve reusable Radar, consent/privacy flows, routes, components and tests.
 
-Privacy-preserving matching, real ancestry/relationship data providers, stronger consent architecture, identity verification, safety tooling, notifications and platform integrations.
+## v0.2 — Visual Origin Discovery core
 
-These are exploration areas, not commitments.
+1. **My Origins** — an inviting personal origin overview.
+2. **Interactive Origin Map** — geography and places connected to the user's story.
+3. **Migration Stories** — visual journeys with source/provenance labels.
+4. **My Family Story** — narratives, memories and documented sources.
+5. **Mobile-first onboarding** — show value without requiring a DNA test.
 
-## Distribution hypothesis
+## Secondary feature — KIN Radar
 
-KIN should first stand on its own as a product/engine. Future integration with existing social platforms can be explored later.
+Keep Radar as a playful add-on, not the main product. Improve its fit with the wider KIN experience while preserving opt-in visibility, privacy-first discovery and mutual consent. Proximity is not kinship. Synthetic matches and distances must be labelled as demo data.
+
+## Optional DNA Discovery
+
+Design a provider-neutral DNA journey. DNA is central to positioning but optional for users. Do not assume provider APIs or SDKs exist. Avoid raw DNA storage by default. Clearly distinguish user-reported origins, documented genealogy and DNA-derived estimates. Real genetic data requires legal, privacy and security review.
+
+## Partnership direction
+
+Potential discussions—not confirmed partnerships:
+- MyHeritage — genealogy, family history and DNA.
+- Ancestry — genealogy, family history and DNA.
+- Snapchat — possible future social/place-based interaction opportunity related to Radar.
+
+No partnership, endorsement, integration, funding or API access is confirmed. Any Snapchat teaser must be labelled as a future possibility.
+
+## Six-day prototype sprint
+
+1. Product definition and technical audit.
+2. Onboarding, profile and visual identity.
+3. Origin map, geography and migration stories.
+4. Social discovery and KIN Radar as secondary feature.
+5. Optional DNA journey and partner-facing explanation.
+6. Quality, testing, privacy boundaries and partner presentation.
+
+## Validation and release gates
+
+- Test the main discovery journey with adult users; measure completion, repeat interest, trust and referral intent.
+- Research alternatives and novelty honestly.
+- Do not call KIN production-ready until authentication, secure backend enforcement, moderation/reporting, privacy/security review, data rights and end-to-end tests are addressed.
