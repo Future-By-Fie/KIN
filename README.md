@@ -1,69 +1,61 @@
-# KIN — Visual Origin Discovery & Social Connection
+# KIN v0.1 — "Discovery before identity" (prototype)
 
-**Discover where you come from. Connect with where you belong.**
+KIN is a **clickable proof of concept**, not a production app. It demonstrates a
+consent-first way to discover *possible* family connections nearby, where identities
+stay hidden until both sides opt in.
 
-KIN is a mobile-first product concept exploring a more visual, accessible and social way to discover personal origins, family history and human connections.
+**Everything is synthetic.** There is no real DNA analysis, no real relatives, no
+device location, no identity verification, no secure matching, no accounts and no
+backend. "Lund, Sweden", distances and "connection confidence" are fictional values.
 
-KIN is not a conventional digital family tree. Its primary experience centres on origin discovery: personal origin maps, geography, migration stories and a personal family story. DNA can enrich the experience, but a DNA test is optional. Social discovery is opt-in, with **KIN Radar retained as a secondary feature**.
-
-> **Product principle:** Origins give KIN substance. Radar gives KIN playfulness. DNA creates a strategic partnership opportunity.
-
-## Product pillars
-
-1. **Visual Origin Discovery (core):** My Origins, Interactive Origin Map, Migration Stories and My Family Story.
-2. **DNA Discovery (optional):** a central enrichment and partnership path, without making DNA testing a requirement.
-3. **Social Connection:** privacy-first discovery, user-controlled visibility and mutual consent. KIN Radar is a secondary, playful nearby-discovery feature.
-
-## KIN Radar
-
-Radar remains part of KIN. It is not the main product or homepage. It may help users discover potential KIN connections nearby, but proximity is not proof of family relationship. Identity disclosure and contact require mutual consent. Demo scores, distances, profiles and matches are synthetic and must never be represented as real.
-
-## Partnership direction — no partnerships currently implied
-
-KIN is designed to be provider-neutral and may explore future strategic discussions with:
-- **MyHeritage** — family history, genealogy and DNA services.
-- **Ancestry** — family history, genealogy and DNA services.
-- **Snapchat** — a possible longer-term social / place-based discovery opportunity related to Radar.
-
-These are prospective partners only. There are no confirmed partnerships, endorsements, APIs, SDKs, integrations, investments or development grants. Any provider integration or commercial arrangement requires direct agreement and verified technical access. A Snapchat reference must be clearly labelled as a future possibility, not an existing integration.
-
-## Prototype status: v0.1
-
-This repository currently documents an exploratory clickable proof of concept centred on consent-first nearby discovery. It uses synthetic data. It is not a production app and does not provide real DNA analysis, verified relatives, real location matching, production authentication, server-enforced consent or a production backend.
-
-The existing prototype is a foundation to evolve. Preserve reusable Radar, consent/privacy flows, routes, components and tests while developing the new primary origin-discovery experience.
-
-## Trust and privacy principles
-
-- DNA is optional and requires explicit, informed consent.
-- Do not store raw DNA files by default; investigate provider-mediated options.
-- Distinguish user-reported origins, documented genealogy and DNA-derived estimates.
-- No automatic public disclosure of identity, DNA results or family connections.
-- Provide user-controlled visibility, consent withdrawal, blocking and reporting.
-- Never imply that proximity, shared geography or an estimate proves biological kinship.
-- Label all synthetic demo data clearly.
-- Real genetic or location-based features require specialist privacy, security and legal review before launch.
-
-## Development priorities
-
-1. Build the visual origin-discovery core and a clear first-use journey.
-2. Preserve and refine Radar as a secondary feature.
-3. Design an optional, provider-neutral DNA discovery journey.
-4. Improve privacy, consent and synthetic-data boundaries.
-5. Validate the experience with users and prepare a credible partner proposition.
-
-## Run the existing prototype
+## Run
 
 ```sh
 npm i
-npm run dev
-npm run lint
-npm test
-npm run build
+npm run dev     # local dev server
+npm run lint    # ESLint + Prettier
+npm test        # Vitest (unit + component tests)
+npm run build   # production build
 ```
 
-## Collaboration & rights
+## Architecture
 
-This public repository is available for evaluation; it is **not currently offered under an open-source license**. We welcome thoughtful technical and strategic conversations. Contributions and reuse require prior written agreement. See [Collaboration & intellectual property](COLLABORATION.md) and [Build with us](https://www.future-by-fie.com/#partners).
+- **TanStack Start + React 19**, file routes in `src/routes` (one route per screen,
+  each with `noindex` metadata).
+- **`src/lib/kin/service.ts`** — typed, in-memory demo adapter. All fixtures
+  (`mock-data.ts`), matching, consent, messages and block/report state live here so a
+  real API can replace it without touching screens. State lives in the browser tab
+  only and resets on reload.
+- **`src/lib/kin/discovery.ts`** — pure rules for when discovery/reveal is allowed.
+- **`src/components/kin/demo-context.tsx`** — session-only preferences (discovery on/off,
+  consent) in React context.
 
-*Future by Fie · Independent innovation studio · Malmö, Sweden*
+## Implemented
+
+- Onboarding → enable (simulated location, no permission requested) → radar → match
+  detail → mutual-consent reveal (other side's consent is simulated) → chat.
+- Identity-returning methods require both consents; discovery methods never return
+  names. Hidden identities are simply not rendered — no blur is used, and nothing in
+  the UI should be read as protecting underlying data.
+- "Stop discovery" on the radar; privacy and settings toggles; demo reset.
+- Block and Report in chat are **local UI state only** — not enforced or sent anywhere.
+- Message input is trimmed and length-limited; ids are validated; no raw HTML rendering;
+  no secrets in client code.
+
+## Limitations
+
+No persistence, auth, server-side consent enforcement, moderation, real location or
+real kinship inference. Consent from the other person is faked with a timer.
+
+## Next steps
+
+1. Define a server API matching `service.ts` and enforce consent/blocks server-side.
+2. Add accounts, abuse reporting with a real moderation path, and audit logging.
+3. Privacy/legal review (GDPR, special-category data) before any real ancestry or
+   location data is considered.
+4. End-to-end tests (Playwright) for the full journey.
+
+## Day 3 (v0.2)
+- **18+ gate:** `/welcome` asks for a simple "I am 18 or older" self-confirmation (no birth date). It is saved in this browser only and is not age verification. Every page except landing, welcome, privacy and how-it-works redirects there until confirmed.
+- **My Origins (`/origins`)** is the home screen: add, edit and remove places with a short story, labelled "You added this" or "Documented (not verified by KIN)". Stored in `localStorage` (`kin.origins.v1`) only; nothing is verified or shared.
+- **KIN Day (`/kin-day`)**: optional 18th-birthday milestone. It grants no consent and does not turn on Radar.
