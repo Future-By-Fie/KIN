@@ -67,3 +67,9 @@ npm run build
 This public repository is available for evaluation; it is **not currently offered under an open-source license**. We welcome thoughtful technical and strategic conversations. Contributions and reuse require prior written agreement. See [Collaboration & intellectual property](COLLABORATION.md) and [Build with us](https://www.future-by-fie.com/#partners).
 
 *Future by Fie · Independent innovation studio · Malmö, Sweden*
+
+## Partner presentation
+
+[View the 10-slide KIN Partner Pitch](https://www.canva.com/d/5lCdTn56vRTGcV5) · [Read the partner brief](docs/partner-pitch.md) · [Open the current demo](https://id-preview--3f3b6825-eb35-41bb-87e2-874a0e652f85.lovable.app)
+
+The presentation introduces the concept and partnership opportunity. The linked prototype is an early frontend-only demo using local browser storage and demo/user-entered content; it is not a production service and does not include live DNA analysis, verified genealogy, live matching or partner integrations.
