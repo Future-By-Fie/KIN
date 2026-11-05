@@ -5,6 +5,8 @@
 
 ## Partner presentation
 
+[Public Notion partner page](https://app.notion.com/p/40fd2cfd301a812a9e1ece0bed47dce9)
+
 [View the 10-slide KIN Partner Pitch in Canva](https://www.canva.com/d/5lCdTn56vRTGcV5)
 
 This is the public viewing link to the current presentation. The Canva source remains the editable master.
