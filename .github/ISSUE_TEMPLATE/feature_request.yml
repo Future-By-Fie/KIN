@@ -1,0 +1,31 @@
+name: Feature proposal
+description: Suggest a product or engineering improvement
+title: "[Proposal]: "
+labels: ["enhancement", "needs-triage"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: User problem or opportunity
+      description: What need or friction does this address?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed change
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: Expected user impact
+      description: How would we know this is better?
+  - type: checkboxes
+    id: guardrails
+    attributes:
+      label: Product guardrails
+      options:
+        - label: Keeps origin discovery as the primary experience
+        - label: Keeps DNA optional and provider-neutral
+        - label: Preserves privacy, consent and clear demo-data labels
