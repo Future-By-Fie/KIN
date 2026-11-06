@@ -1,66 +1,139 @@
-# KIN v0.1 — "Discovery before identity" (prototype)
+# KIN
 
-KIN is a **clickable proof of concept**, not a production app. It demonstrates a
-consent-first way to discover *possible* family connections nearby, where identities
-stay hidden until both sides opt in.
+**Discover where you come from. Connect with where you belong.**
 
-**Everything is synthetic.** There is no real DNA analysis, no real relatives, no
-device location, no identity verification, no secure matching, no accounts and no
-backend. "Lund, Sweden", distances and "connection confidence" are fictional values.
+KIN is a mobile-first product concept exploring a more visual, accessible and social way to discover personal origins, family history and meaningful human connections.
 
-## Run
+KIN is not a conventional digital family tree. The product direction is **origin discovery first**: personal origins, maps, migration stories and a personal family story. DNA is an optional enrichment path. KIN Radar remains a playful, secondary social-discovery feature.
 
-```sh
-npm i
-npm run dev     # local dev server
-npm run lint    # ESLint + Prettier
-npm test        # Vitest (unit + component tests)
-npm run build   # production build
+> **Origins give KIN substance. Radar gives it playfulness. DNA creates a strategic partnership opportunity.**
+
+<p align="center">
+  <a href="https://id-preview--3f3b6825-eb35-41bb-87e2-874a0e652f85.lovable.app"><strong>Open the live prototype</strong></a>
+  ·
+  <a href="docs/PRODUCT-VISION.md">Product vision</a>
+  ·
+  <a href="docs/IMPLEMENTATION-STATUS.md">Implementation status</a>
+  ·
+  <a href="docs/DEVELOPER-GUIDE.md">Developer guide</a>
+</p>
+
+## At a glance
+
+| Area | Direction |
+|---|---|
+| Core experience | Visual origin discovery |
+| Key experiences | My Origins, Origin Map, Migration Stories |
+| DNA | Optional, provider-neutral enrichment |
+| Social | Consent-first connection; Radar is secondary |
+| Current maturity | Clickable prototype / proof of concept |
+| Production status | **Not production-ready** |
+
+## Try KIN
+
+**Live demo:** [Open KIN](https://id-preview--3f3b6825-eb35-41bb-87e2-874a0e652f85.lovable.app)
+
+The prototype is intended for product exploration and feedback. Use fictional/demo information only. Do not enter real genetic, medical, identity or sensitive family data.
+
+## What is implemented
+
+The active application at the repository root includes the current origin-first direction and prototype journeys for:
+
+- 18+ self-confirmation gate (not identity or age verification).
+- My Origins and user-entered origin information.
+- Origin map and migration-story experiences.
+- Optional DNA discovery concept screens (not a DNA integration).
+- Secondary Radar/discovery, consent/reveal and chat demo flows.
+- Local demo state and automated unit/component tests.
+
+The repository also contains `demo/lovable-mvp/`, an earlier Radar-first prototype retained for historical comparison. **The repository-root application is the active development target.** The legacy demo is not the product source of truth.
+
+## Important: prototype limitations
+
+This is an exploratory frontend prototype, not a production service. Depending on the feature, data is synthetic, user-entered or stored locally in the browser. It does not provide:
+
+- Real DNA analysis, verified genealogy or biological kinship inference.
+- Confirmed partnerships, provider APIs, SDKs or live DNA integrations.
+- Production user accounts, authentication or a production backend.
+- Secure server-side consent enforcement or a production matching engine.
+- Real-time location matching, identity verification or production moderation.
+- A production-grade privacy, security or legal framework.
+
+A visual match, shared place, estimate or proximity must never be interpreted as proof of family relationship.
+
+## Technology
+
+The active application uses:
+
+- React 19 and TypeScript
+- TanStack Start / TanStack Router
+- Vite
+- Tailwind CSS
+- Vitest and Testing Library
+
+The exact dependency versions and scripts are defined in the root `package.json` and `bun.lock`.
+
+## Run locally
+
+Requirements: Git and [Bun](https://bun.sh/) (use a current Bun 1.x release).
+
+```bash
+git clone https://github.com/Future-By-Fie/KIN.git
+cd KIN
+
+# The active application is at the repository root.
+bun install --frozen-lockfile
+bun run dev
 ```
 
-## Architecture
+Then open the local URL printed by Vite.
 
-- **TanStack Start + React 19**, file routes in `src/routes` (one route per screen,
-  each with `noindex` metadata).
-- **`src/lib/kin/service.ts`** — typed, in-memory demo adapter. All fixtures
-  (`mock-data.ts`), matching, consent, messages and block/report state live here so a
-  real API can replace it without touching screens. State lives in the browser tab
-  only and resets on reload.
-- **`src/lib/kin/discovery.ts`** — pure rules for when discovery/reveal is allowed.
-- **`src/components/kin/demo-context.tsx`** — session-only preferences (discovery on/off,
-  consent) in React context.
+Useful checks:
 
-## Implemented
+```bash
+bun run test
+bun run lint
+bun run build
+```
 
-- Onboarding → enable (simulated location, no permission requested) → radar → match
-  detail → mutual-consent reveal (other side's consent is simulated) → chat.
-- Identity-returning methods require both consents; discovery methods never return
-  names. Hidden identities are simply not rendered — no blur is used, and nothing in
-  the UI should be read as protecting underlying data.
-- "Stop discovery" on the radar; privacy and settings toggles; demo reset.
-- Block and Report in chat are **local UI state only** — not enforced or sent anywhere.
-- Message input is trimmed and length-limited; ids are validated; no raw HTML rendering;
-  no secrets in client code.
+For setup details, repository layout and troubleshooting, see the [Developer guide](docs/DEVELOPER-GUIDE.md).
 
-## Limitations
+## Repository map
 
-No persistence, auth, server-side consent enforcement, moderation, real location or
-real kinship inference. Consent from the other person is faked with a timer.
+```text
+KIN/
+├── .github/                 # CI and contribution templates
+├── docs/                    # Product, architecture and engineering notes
+├── src/
+│   ├── components/          # Shared and product UI
+│   ├── lib/kin/              # Domain logic, demo services and tests
+│   └── routes/               # TanStack file-based routes
+├── public/                  # Static assets
+├── demo/lovable-mvp/        # Earlier Radar-first prototype (legacy)
+├── package.json
+└── bun.lock
+```
 
-## Next steps
+## Product and engineering documentation
 
-1. Define a server API matching `service.ts` and enforce consent/blocks server-side.
-2. Add accounts, abuse reporting with a real moderation path, and audit logging.
-3. Privacy/legal review (GDPR, special-category data) before any real ancestry or
-   location data is considered.
-4. End-to-end tests (Playwright) for the full journey.
+- [Product vision](docs/PRODUCT-VISION.md) — what KIN is intended to become.
+- [Implementation status](docs/IMPLEMENTATION-STATUS.md) — what exists today vs. what remains.
+- [Developer guide](docs/DEVELOPER-GUIDE.md) — setup, scripts and code orientation.
+- [Architecture](docs/ARCHITECTURE.md) — current technical boundaries and future seams.
+- [Roadmap](docs/ROADMAP.md) — proposed product sequence, not a delivery promise.
+- [Privacy principles](docs/PRIVACY.md) — principles and known prototype limitations.
+- [Next engineering steps](docs/NEXT_STEPS.md) — concrete technical review priorities.
 
-## Day 3 (v0.2)
-- **18+ gate:** `/welcome` asks for a simple "I am 18 or older" self-confirmation (no birth date). It is saved in this browser only and is not age verification. Every page except landing, welcome, privacy and how-it-works redirects there until confirmed.
-- **My Origins (`/origins`)** is the home screen: add, edit and remove places with a short story, labelled "You added this" or "Documented (not verified by KIN)". Stored in `localStorage` (`kin.origins.v1`) only; nothing is verified or shared.
-- **KIN Day (`/kin-day`)**: optional 18th-birthday milestone. It grants no consent and does not turn on Radar.
+## Partnership direction
 
-## Day 4: Origins map
-- `/origins` opens on a stylised SVG map (`src/components/kin/origins-map.tsx`). Points come only from places you entered, matched exactly against a fixed bundled list (`src/lib/kin/places.ts`). This is not geocoding and makes no network calls. Unknown places are listed under "Not on the map" and never guessed.
-- "Show as a journey" links places in order of the era you typed. It is labelled "Your order, not verified".
-- Settings → Reset demo clears demo connections, saved origins, the 18+ confirmation and the KIN Day dismissal, then returns to `/welcome`.
+KIN may explore future discussions with companies in genealogy, DNA and social technology, including MyHeritage, Ancestry and Snapchat. These are **prospective ideas only**. No partnership, endorsement, investment, API access, SDK access or integration is currently implied or claimed.
+
+## Contributing and project rights
+
+This repository is public for product and technical evaluation, but **it is not currently distributed under an open-source license**. Public visibility does not grant permission to reuse, redistribute or commercially exploit the code. If you are interested in contributing, collaborating or helping take KIN further, please read [CONTRIBUTING.md](CONTRIBUTING.md) and contact the project owner before submitting substantial work.
+
+KIN is an independent project by **Future by Fie**, Malmö, Sweden.
+
+---
+
+*The demo is a conversation starter, not a claim of production readiness. We welcome thoughtful engineering feedback, product critique and collaboration proposals.*
