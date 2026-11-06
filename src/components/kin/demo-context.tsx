@@ -5,6 +5,7 @@ type DemoValue = {
   preferences: Preferences;
   setPreference: (key: keyof Preferences, value: boolean) => void;
   stopDiscovery: () => void;
+  resetPreferences: () => void;
   refresh: number;
   updateConnections: () => void;
 };
@@ -22,9 +23,17 @@ export function DemoProvider({ children }: { children: ReactNode }) {
     [],
   );
   const updateConnections = useCallback(() => setRefresh((n) => n + 1), []);
+  const resetPreferences = useCallback(() => setPreferences(initialPreferences), []);
   const value = useMemo(
-    () => ({ preferences, setPreference, stopDiscovery, refresh, updateConnections }),
-    [preferences, setPreference, stopDiscovery, refresh, updateConnections],
+    () => ({
+      preferences,
+      setPreference,
+      stopDiscovery,
+      resetPreferences,
+      refresh,
+      updateConnections,
+    }),
+    [preferences, setPreference, stopDiscovery, resetPreferences, refresh, updateConnections],
   );
   return <DemoContext.Provider value={value}>{children}</DemoContext.Provider>;
 }
