@@ -1,0 +1,13 @@
+# KIN v0.1
+- [x] Build dark mobile-first discovery and onboarding screens.
+- [x] Build consent-first reveal and lightweight chat with isolated synthetic services.
+- [x] Build connections, profile, settings, how-it-works and privacy.
+- [x] Test consent rules and verify desktop/mobile flows without publishing.
+- [x] Replace the missing binary avatar with an original synthetic SVG so the copy in GitHub builds.# KIN v0.2 sprint
+- [x] Day 1: audit and plan
+- [x] Day 2: origins/provenance/consent model + rule tests; remove invented kinship claims from Radar
+- [x] Day 3: 18+ gate, My Origins home (local storage), KIN Day, new menu
+- [x] Day 4: stabilise Day 3 (type fix, full reset), Origins map + journey line
+- [ ] Day 5: migration stories (moved from Day 4)
+- [ ] Day 5: family story, DNA explainer, consent centre
+- [x] Final day: landing tagline, /dna concept page, Radar note, how-it-works wording, checks

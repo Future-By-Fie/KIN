@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200" role="img" aria-labelledby="kin-maja-title kin-maja-desc">
+  <title id="kin-maja-title">Synthetic profile portrait of Maja</title>
+  <desc id="kin-maja-desc">Original synthetic illustration used as a demo avatar. Not a real photograph.</desc>
+  <defs>
+    <radialGradient id="kin-maja-bg" cx="50%" cy="36%" r="80%">
+      <stop offset="0" stop-color="#1F221A"/>
+      <stop offset="1" stop-color="#0D0E0C"/>
+    </radialGradient>
+    <radialGradient id="kin-maja-glow" cx="50%" cy="42%" r="48%">
+      <stop offset="0" stop-color="#EDE24A" stop-opacity=".24"/>
+      <stop offset="1" stop-color="#EDE24A" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="kin-maja-skin" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#D5AC84"/>
+      <stop offset="1" stop-color="#B98A63"/>
+    </linearGradient>
+    <linearGradient id="kin-maja-hair" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#37342C"/>
+      <stop offset="1" stop-color="#191714"/>
+    </linearGradient>
+    <linearGradient id="kin-maja-cloth" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2D3227"/>
+      <stop offset="1" stop-color="#161914"/>
+    </linearGradient>
+    <clipPath id="kin-maja-frame">
+      <circle cx="100" cy="100" r="100"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#kin-maja-frame)">
+    <rect width="200" height="200" fill="url(#kin-maja-bg)"/>
+    <circle cx="100" cy="100" r="100" fill="url(#kin-maja-glow)"/>
+    <g fill="none" stroke="#EDE24A" stroke-width="1.5">
+      <circle cx="100" cy="90" r="60" opacity=".12"/>
+      <circle cx="100" cy="90" r="76" opacity=".08"/>
+      <circle cx="100" cy="90" r="92" opacity=".05"/>
+      <circle cx="100" cy="90" r="68" opacity=".28" stroke-width="2" stroke-dasharray="1 10" stroke-linecap="round"/>
+    </g>
+    <path d="M89 116h22v26a11 11 0 0 1-22 0z" fill="#A87B57"/>
+    <path d="M26 200C26 166 56 146 100 146s74 20 74 54z" fill="url(#kin-maja-cloth)"/>
+    <path d="M86 149c4 14 24 14 28 0" fill="none" stroke="#EDE24A" stroke-width="2.5" stroke-linecap="round" opacity=".8"/>
+    <ellipse cx="100" cy="86" rx="42" ry="44" fill="url(#kin-maja-hair)"/>
+    <g fill="#C4956D">
+      <ellipse cx="66" cy="100" rx="6.5" ry="7.5"/>
+      <ellipse cx="134" cy="100" rx="6.5" ry="7.5"/>
+    </g>
+    <ellipse cx="100" cy="94" rx="32" ry="38" fill="url(#kin-maja-skin)"/>
+    <path d="M64 100C60 27 140 27 136 100c-4-20-16-28-36-28s-32 8-36 28z" fill="url(#kin-maja-hair)"/>
+    <g fill="none" stroke="#2A2620" stroke-width="2.6" stroke-linecap="round">
+      <path d="M80 89c5-4 11-4 16-1"/>
+      <path d="M104 88c5-3 11-3 16 1"/>
+    </g>
+    <g fill="#241F1A">
+      <ellipse cx="88" cy="99" rx="3.2" ry="3.8"/>
+      <ellipse cx="112" cy="99" rx="3.2" ry="3.8"/>
+    </g>
+    <g fill="#C97F5F" opacity=".2">
+      <ellipse cx="79" cy="108" rx="7" ry="4"/>
+      <ellipse cx="121" cy="108" rx="7" ry="4"/>
+    </g>
+    <path d="M92 116c5 6 11 6 16 0" fill="none" stroke="#8A5A41" stroke-width="2.6" stroke-linecap="round"/>
+  </g>
+</svg>
