@@ -65,7 +65,11 @@ function Welcome() {
         <Button
           variant="ghost"
           className="mt-3 text-muted-foreground"
-          onClick={() => setLeft(true)}
+          onClick={() => {
+            setAttested(window.localStorage, false);
+            setChecked(false);
+            setLeft(true);
+          }}
         >
           I'm under 18 — leave
         </Button>
