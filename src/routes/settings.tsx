@@ -17,7 +17,7 @@ export const Route = createFileRoute("/settings")({
   component: Settings,
 });
 function Settings() {
-  const { preferences, setPreference, updateConnections } = useDemo();
+  const { preferences, setPreference, resetPreferences, updateConnections } = useDemo();
   const [reset, setReset] = useState(false);
   const navigate = useNavigate();
   return (
@@ -82,6 +82,7 @@ function Settings() {
           onClick={() => {
             resetDemo();
             resetLocalDemo(localStorage);
+            resetPreferences();
             updateConnections();
             setReset(true);
             void navigate({ to: "/welcome" });
