@@ -1,15 +1,24 @@
 import { useState } from "react";
 import { journey, locate, MAP_COPY, project } from "@/lib/kin/places";
 import { ENTRY_LABEL, type OriginEntry } from "@/lib/kin/origins-store";
+import type { Story } from "@/lib/kin/stories-store";
 
 /** Stylised SVG world view of the user's own origins. No tiles, no network, no guessing. */
 export function OriginsMap({
   list,
   onSelect,
+  story,
 }: {
   list: OriginEntry[];
   onSelect: (o: OriginEntry) => void;
+  /** Draw this story's steps as arrows, only between places on the fixed map list. */
+  story?: Story;
 }) {
+  const legs = (story?.steps ?? []).flatMap((st) => {
+    const a = locate(st.from);
+    const b = locate(st.to);
+    return a && b && a !== b ? [{ id: st.id, src: st.source, a: project(a), b: project(b) }] : [];
+  });
   const [showJourney, setShowJourney] = useState(false);
   const placed = list.flatMap((o) => {
     const at = locate(o.place, o.country);
@@ -44,6 +53,31 @@ export function OriginsMap({
           {showJourney && path.length > 1 && (
             <polyline points={path.map((p) => `${p.x},${p.y}`).join(" ")} className="map-journey" />
           )}
+          <defs>
+            <marker
+              id="story-arrow"
+              viewBox="0 0 6 6"
+              refX="5"
+              refY="3"
+              markerWidth="4"
+              markerHeight="4"
+              orient="auto"
+            >
+              <path d="M0,0 L6,3 L0,6 z" className="map-story-head" />
+            </marker>
+          </defs>
+          {legs.map((l) => (
+            <line
+              key={l.id}
+              x1={l.a.x}
+              y1={l.a.y}
+              x2={l.b.x}
+              y2={l.b.y}
+              className="map-story"
+              data-src={l.src}
+              markerEnd="url(#story-arrow)"
+            />
+          ))}
           {pts.map(({ o, x, y }) => (
             <g
               key={o.id}
