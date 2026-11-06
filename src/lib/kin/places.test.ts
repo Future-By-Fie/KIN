@@ -34,14 +34,21 @@ describe("Origins map", () => {
 });
 
 describe("Reset demo", () => {
-  it("clears the 18+ confirmation, origins and KIN Day dismissal", () => {
-    const m = new Map(LOCAL_DEMO_KEYS.map((k) => [k, "x"]));
+  it("clears the 18+ confirmation, origins, KIN Day dismissal and stories only", () => {
+    const m = new Map([
+      ["kin.attested18.v1", "yes"],
+      ["kin.origins.v1", "[]"],
+      ["kin.kinday.dismissed", "1"],
+      ["kin.stories.v1", "[]"],
+      ["unrelated.preference", "keep"],
+    ]);
     resetLocalDemo({ removeItem: (k: string) => void m.delete(k) });
-    expect(m.size).toBe(0);
+    expect([...m.entries()]).toEqual([["unrelated.preference", "keep"]]);
     expect(LOCAL_DEMO_KEYS).toEqual([
       "kin.attested18.v1",
       "kin.origins.v1",
       "kin.kinday.dismissed",
+      "kin.stories.v1",
     ]);
   });
 });
