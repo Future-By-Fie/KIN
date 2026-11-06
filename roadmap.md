@@ -10,4 +10,4 @@
 - [x] Day 4: stabilise Day 3 (type fix, full reset), Origins map + journey line
 - [ ] Day 5: migration stories (moved from Day 4)
 - [ ] Day 5: family story, DNA explainer, consent centre
-- [ ] Day 6: Radar under Connect, docs, checks
+- [x] Final day: landing tagline, /dna concept page, Radar note, how-it-works wording, checks
