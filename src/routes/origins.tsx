@@ -24,6 +24,16 @@ import {
 } from "@/components/ui/alert-dialog";
 import { AppShell, DemoNote } from "@/components/kin/shell";
 import { OriginsMap } from "@/components/kin/origins-map";
+import { StoryEditor, emptyStory } from "@/components/kin/story-editor";
+import { StoryTimeline } from "@/components/kin/story-timeline";
+import {
+  loadStories,
+  newPlacesFrom,
+  removeStory,
+  saveStory,
+  type Story,
+  type StoryInput,
+} from "@/lib/kin/stories-store";
 import { KNOWN_PLACES } from "@/lib/kin/places";
 import { pageHead } from "@/lib/kin/queries";
 import {
@@ -58,9 +68,13 @@ function Origins() {
   const [removing, setRemoving] = useState<OriginEntry | null>(null);
   const [error, setError] = useState("");
   const [showDay, setShowDay] = useState(false);
-  const [view, setView] = useState<"map" | "list">("map");
+  const [view, setView] = useState<"map" | "list" | "stories">("map");
+  const [stories, setStories] = useState<Story[]>([]);
+  const [storyEdit, setStoryEdit] = useState<{ id?: string; form: StoryInput } | null>(null);
+  const [storyRemoving, setStoryRemoving] = useState<Story | null>(null);
   useEffect(() => {
     setList(loadOrigins(localStorage));
+    setStories(loadStories(localStorage));
     setShowDay(localStorage.getItem(DAY_KEY) !== "1");
   }, []);
   const save = () => {
@@ -116,7 +130,7 @@ function Origins() {
           role="group"
           aria-label="View"
         >
-          {(["map", "list"] as const).map((v) => (
+          {(["map", "list", "stories"] as const).map((v) => (
             <button
               key={v}
               type="button"
@@ -138,7 +152,34 @@ function Origins() {
           />
         )}
 
-        <ul className={`mt-6 space-y-3 ${view === "map" ? "hidden" : ""}`}>
+        {view === "stories" && (
+          <div className="mt-6 space-y-4">
+            {stories.length === 0 && (
+              <p className="text-sm text-muted-foreground">
+                Tell how your family moved. Only what you know — KIN adds nothing.
+              </p>
+            )}
+            {stories.map((st) => (
+              <StoryTimeline
+                key={st.id}
+                story={st}
+                origins={list}
+                onEdit={() => setStoryEdit({ id: st.id, form: { ...st } })}
+                onRemove={() => setStoryRemoving(st)}
+              />
+            ))}
+            <Button
+              variant="kin"
+              size="cta"
+              className="w-full"
+              onClick={() => setStoryEdit({ form: emptyStory() })}
+            >
+              <Plus /> Start a story
+            </Button>
+          </div>
+        )}
+
+        <ul className={`mt-6 space-y-3 ${view !== "list" ? "hidden" : ""}`}>
           {list.map((o) => (
             <li key={o.id} className="rounded-2xl border border-border bg-card p-4">
               <div className="flex items-start gap-2">
@@ -186,7 +227,7 @@ function Origins() {
         <Button
           variant="kin"
           size="cta"
-          className="mt-6 w-full"
+          className={`mt-6 w-full ${view === "stories" ? "hidden" : ""}`}
           onClick={() => {
             setError("");
             setEditing({ form: empty });
@@ -198,6 +239,52 @@ function Origins() {
           <DemoNote />
         </div>
       </section>
+
+      <datalist id="kin-places">
+        {KNOWN_PLACES.map((k) => (
+          <option key={k.name} value={k.name} />
+        ))}
+      </datalist>
+      <StoryEditor
+        initial={storyEdit?.form ?? null}
+        isEdit={!!storyEdit?.id}
+        onClose={() => setStoryEdit(null)}
+        onSave={(form, alsoSave) => {
+          setStories(saveStory(localStorage, form, storyEdit?.id));
+          if (alsoSave) {
+            let next = list;
+            for (const place of newPlacesFrom(form, list))
+              next = addOrigin(
+                localStorage,
+                { place, country: "", era: "", story: "", provenance: "self_reported" },
+                `o-${Date.now()}-${next.length}`,
+              );
+            setList(next);
+          }
+          setStoryEdit(null);
+        }}
+      />
+      <AlertDialog open={!!storyRemoving} onOpenChange={(o) => !o && setStoryRemoving(null)}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Delete “{storyRemoving?.title}”?</AlertDialogTitle>
+            <AlertDialogDescription>
+              This deletes the story from this browser. Your origins stay.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Keep</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={() => {
+                if (storyRemoving) setStories(removeStory(localStorage, storyRemoving.id));
+                setStoryRemoving(null);
+              }}
+            >
+              Delete
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
 
       <Dialog open={!!editing} onOpenChange={(o) => !o && setEditing(null)}>
         <DialogContent>
@@ -224,11 +311,6 @@ function Origins() {
                   onChange={(e) => set("place", e.target.value)}
                 />
               </div>
-              <datalist id="kin-places">
-                {KNOWN_PLACES.map((k) => (
-                  <option key={k.name} value={k.name} />
-                ))}
-              </datalist>
               <div>
                 <Label htmlFor="o-country">Region or country</Label>
                 <Input
