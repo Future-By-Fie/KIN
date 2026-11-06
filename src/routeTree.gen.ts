@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ConnectionsRouteImport } from './routes/connections'
 import { Route as DiscoverRouteImport } from './routes/discover'
+import { Route as DnaRouteImport } from './routes/dna'
 import { Route as EnableRouteImport } from './routes/enable'
 import { Route as HowItWorksRouteImport } from './routes/how-it-works'
 import { Route as KinDayRouteImport } from './routes/kin-day'
@@ -37,6 +38,11 @@ const ConnectionsRoute = ConnectionsRouteImport.update({
 const DiscoverRoute = DiscoverRouteImport.update({
   id: '/discover',
   path: '/discover',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DnaRoute = DnaRouteImport.update({
+  id: '/dna',
+  path: '/dna',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EnableRoute = EnableRouteImport.update({
@@ -99,6 +105,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/connections': typeof ConnectionsRoute
   '/discover': typeof DiscoverRoute
+  '/dna': typeof DnaRoute
   '/enable': typeof EnableRoute
   '/how-it-works': typeof HowItWorksRoute
   '/kin-day': typeof KinDayRoute
@@ -115,6 +122,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/connections': typeof ConnectionsRoute
   '/discover': typeof DiscoverRoute
+  '/dna': typeof DnaRoute
   '/enable': typeof EnableRoute
   '/how-it-works': typeof HowItWorksRoute
   '/kin-day': typeof KinDayRoute
@@ -132,6 +140,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/connections': typeof ConnectionsRoute
   '/discover': typeof DiscoverRoute
+  '/dna': typeof DnaRoute
   '/enable': typeof EnableRoute
   '/how-it-works': typeof HowItWorksRoute
   '/kin-day': typeof KinDayRoute
@@ -150,6 +159,7 @@ export interface FileRouteTypes {
     | '/'
     | '/connections'
     | '/discover'
+    | '/dna'
     | '/enable'
     | '/how-it-works'
     | '/kin-day'
@@ -166,6 +176,7 @@ export interface FileRouteTypes {
     | '/'
     | '/connections'
     | '/discover'
+    | '/dna'
     | '/enable'
     | '/how-it-works'
     | '/kin-day'
@@ -182,6 +193,7 @@ export interface FileRouteTypes {
     | '/'
     | '/connections'
     | '/discover'
+    | '/dna'
     | '/enable'
     | '/how-it-works'
     | '/kin-day'
@@ -199,6 +211,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ConnectionsRoute: typeof ConnectionsRoute
   DiscoverRoute: typeof DiscoverRoute
+  DnaRoute: typeof DnaRoute
   EnableRoute: typeof EnableRoute
   HowItWorksRoute: typeof HowItWorksRoute
   KinDayRoute: typeof KinDayRoute
@@ -233,6 +246,13 @@ declare module '@tanstack/react-router' {
       path: '/discover'
       fullPath: '/discover'
       preLoaderRoute: typeof DiscoverRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dna': {
+      id: '/dna'
+      path: '/dna'
+      fullPath: '/dna'
+      preLoaderRoute: typeof DnaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/enable': {
@@ -319,6 +339,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ConnectionsRoute: ConnectionsRoute,
   DiscoverRoute: DiscoverRoute,
+  DnaRoute: DnaRoute,
   EnableRoute: EnableRoute,
   HowItWorksRoute: HowItWorksRoute,
   KinDayRoute: KinDayRoute,
