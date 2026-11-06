@@ -101,6 +101,16 @@ function Origins() {
         <p className="text-sm text-muted-foreground mt-2">
           Stored only in this browser. Not verified.
         </p>
+        <Link
+          to="/dna"
+          className="mt-4 block rounded-xl border border-border bg-glass px-4 py-3 text-sm hover:border-primary/40"
+        >
+          <span className="font-medium">DNA</span>{" "}
+          <span className="eyebrow text-muted-foreground">Optional · coming later</span>
+          <span className="block text-xs text-muted-foreground mt-1">
+            How DNA could enrich your origins. No provider connected.
+          </span>
+        </Link>
 
         {showDay && (
           <div className="mt-5 rounded-2xl border border-primary/30 bg-primary/5 p-4 flex gap-3">
