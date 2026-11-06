@@ -17,7 +17,12 @@ export function canEnter(path: string, attested: boolean) {
   return isPublicPath(path) || attested;
 }
 /** Every key the local demo saves in this browser. */
-export const LOCAL_DEMO_KEYS = [AGE_KEY, "kin.origins.v1", "kin.kinday.dismissed"];
+export const LOCAL_DEMO_KEYS = [
+  AGE_KEY,
+  "kin.origins.v1",
+  "kin.kinday.dismissed",
+  "kin.stories.v1",
+];
 export function resetLocalDemo(storage: Pick<Storage, "removeItem">) {
   for (const k of LOCAL_DEMO_KEYS) storage.removeItem(k);
 }
