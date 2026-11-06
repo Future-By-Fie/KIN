@@ -35,6 +35,12 @@ function Discover() {
           {active ? "Discovery on" : "Paused"}
         </span>
       </div>
+      <p role="note" className="mt-4 text-xs text-muted-foreground">
+        Radar is an optional, playful extra. Being nearby never means being related.{" "}
+        <Link to="/origins" className="text-primary underline">
+          Back to My Origins
+        </Link>
+      </p>
       <div className="discovery-heading mt-5 md:mt-8">
         <p className="eyebrow text-muted-foreground mb-3">A familiar feeling. A new connection.</p>
         <h1 className="font-display text-[32px] md:text-[46px] font-medium leading-[1.13]">
