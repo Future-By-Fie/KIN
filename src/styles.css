@@ -259,3 +259,13 @@ a:focus-visible, .match-card:focus-visible, .settings-row:focus-visible, .bottom
 .legend-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; }
 @keyframes map-pulse { 50% { transform: scale(1.5); opacity: .05; } }
 @media (prefers-reduced-motion: reduce) { .map-point .map-halo { animation: none; } }
+
+/* Migration stories */
+.map-story { stroke: var(--primary); stroke-width: .7; opacity: .85; }
+.map-story[data-src="documented"] { stroke: var(--signal); }
+.map-story[data-src="family_story"] { stroke: var(--muted-foreground); stroke-dasharray: 2 1.2; }
+.map-story-head { fill: var(--primary); }
+.story-timeline { border-left: 1px solid var(--border); }
+.story-step::before { content: ""; position: absolute; left: -5px; top: 6px; width: 9px; height: 9px; border-radius: 50%; background: var(--primary); }
+.story-step[data-src="documented"]::before { background: var(--signal); }
+.story-step[data-src="family_story"]::before { background: var(--muted-foreground); }
