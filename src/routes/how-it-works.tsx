@@ -16,7 +16,7 @@ function HowItWorks() {
     {
       number: "01",
       title: "DISCOVER",
-      text: "KIN maps where your family story comes from.",
+      text: "Start with your origins: map your places and migration stories. DNA is optional and future.",
       icon: Compass,
     },
     {
@@ -28,7 +28,7 @@ function HowItWorks() {
     {
       number: "03",
       title: "CONNECT",
-      text: "Only mutual consent reveals the connection.",
+      text: "Optionally, meet people through Radar. Only mutual consent reveals anyone.",
       icon: Sparkles,
     },
   ];
@@ -62,8 +62,8 @@ function HowItWorks() {
           </p>
         </div>
         <Button asChild variant="kin" size="cta" className="w-full mt-8">
-          <Link to="/enable">
-            Find my KIN <ArrowRight />
+          <Link to="/origins">
+            Start with my origins <ArrowRight />
           </Link>
         </Button>
         <Button asChild variant="ghost" className="w-full mt-2 text-muted-foreground">
