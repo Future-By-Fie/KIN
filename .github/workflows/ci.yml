@@ -1,26 +1,49 @@
-name: Prototype CI
+name: KIN CI
+
 on:
   push:
-    branches: [main]
+    branches:
+      - main
+      - "backup/**"
   pull_request:
+
 permissions:
   contents: read
+
 jobs:
   verify:
+    name: Verify ${{ matrix.app.name }}
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        app:
+          - name: Active application
+            working-directory: .
+          - name: Legacy Radar prototype
+            working-directory: demo/lovable-mvp
+
     defaults:
       run:
-        working-directory: demo/lovable-mvp
+        working-directory: ${{ matrix.app.working-directory }}
+
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v2
         with:
-          node-version: '22'
+          bun-version: latest
+
       - name: Install dependencies
-        run: npm install --no-audit --no-fund
-      - name: Unit tests
-        run: npm test
-      - name: Lint
-        run: npm run lint
+        run: bun install --frozen-lockfile
+
+      - name: Run tests
+        run: bun run test
+
+      - name: Run lint
+        run: bun run lint
+
       - name: Build
-        run: npm run build
+        run: bun run build
