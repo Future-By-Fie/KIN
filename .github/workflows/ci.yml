@@ -4,8 +4,14 @@ on:
   push:
     branches:
       - main
-      - "backup/**"
   pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+concurrency:
+  group: kin-ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: read
@@ -14,6 +20,7 @@ jobs:
   verify:
     name: Verify ${{ matrix.app.name }}
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     strategy:
       fail-fast: false
       matrix:
@@ -29,7 +36,7 @@ jobs:
 
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Bun
         uses: oven-sh/setup-bun@v2
@@ -42,8 +49,11 @@ jobs:
       - name: Run tests
         run: bun run test
 
-      - name: Run lint
+      - name: Run strict lint
         run: bun run lint
+
+      - name: Check formatting
+        run: bunx prettier --check .
 
       - name: Build
         run: bun run build
