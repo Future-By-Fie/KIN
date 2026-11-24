@@ -11,35 +11,39 @@ KIN is not a digital family tree with a younger skin. **Discovery is the product
 ## Three pillars
 
 ### 1. Visual Origin Discovery — the core
-- My Origins: a personal view of origins and family background.
-- Interactive Origin Map: places and geography connected to the user's story.
-- Migration Stories: journeys across generations, with sources and uncertainty made clear.
-- My Family Story: family narratives, memories and documented sources.
+- **My Origins:** a personal starting point for origins and family background.
+- **Origin Map:** a visual map of places connected to the user's story.
+- **Migration Stories:** journeys across places and generations.
+- **My Family Story:** family narratives, memories and documented sources.
 
-### 2. DNA Discovery — central, but optional
-DNA is a major enrichment path and partnership opportunity. KIN must still work without a DNA test. Any provider connection depends on a negotiated agreement and verified technical access; no API or partnership is assumed.
+### 2. DNA Discovery — important, but optional
+
+DNA is a major potential enrichment path and partnership opportunity. KIN must still work without a DNA test. Any provider connection depends on a negotiated agreement and verified technical access; no API or partnership is assumed.
 
 ### 3. Social Connection — Radar stays as an add-on
-KIN Radar is retained as a secondary, playful feature for discovering potential KIN connections nearby. It is not the main product. It must be privacy-first, user-controlled and consent-led. Proximity is not kinship; identity reveal and contact require mutual consent. Synthetic demo matches, distances and scores must be labelled as fictional.
+
+KIN Radar is retained as a secondary, playful feature for discovering potential KIN connections. It is not the main product. It must be privacy-first, user-controlled and consent-led. Proximity is not kinship; identity reveal and contact require mutual consent. Synthetic demo matches, distances and scores must be labelled as fictional.
 
 ## Experience architecture
 
-**Primary:** My Origins → Interactive Origin Map → Migration Stories → My Family Story → optional DNA Discovery.
+**Primary:** My Origins → Origin Map → Migration Stories → My Family Story → optional DNA Discovery.
 
 **Secondary:** KIN Radar → Discover People → Connections → Privacy & Visibility.
+
+The first journey should make sense and feel valuable without DNA, nearby matches or an existing family tree.
 
 ## Partnership strategy
 
 Potential partners—not confirmed partners:
 - **MyHeritage:** potential complement to genealogy, family history and DNA services.
 - **Ancestry:** potential complement to genealogy, family history and DNA services.
-- **Snapchat:** possible future social / place-based interaction opportunity connected to KIN Radar.
+- **Snapchat:** possible future social/place-based interaction opportunity connected to KIN Radar.
 
 KIN's proposed role is the social and visual discovery experience layer. The partner proposition is complementary, not competitive: established providers may bring records, DNA services and expertise; KIN aims to make discovery more engaging and social. No endorsement, API, SDK, integration, investment or development funding is confirmed.
 
 ## Differentiation hypothesis
 
-The potential distinction is the combined experience: visual origin discovery + optional DNA enrichment + privacy-first social discovery, with Radar as a playful secondary feature. This is a hypothesis, not a novelty claim. Competitor research is required against MyHeritage, Ancestry, 23andMe, genealogy platforms and location-based social products.
+The potential distinction is the combined experience: visual origin discovery + optional DNA enrichment + privacy-first social discovery, with Radar as a playful secondary feature. This is a hypothesis, not a proven novelty or market claim. Competitor research is required against MyHeritage, Ancestry, 23andMe, genealogy platforms and location-based social products.
 
 ## Trust principles
 
@@ -49,11 +53,14 @@ The potential distinction is the combined experience: visual origin discovery + 
 - No automatic public exposure of identity, DNA or family connections.
 - Offer visibility controls, consent withdrawal, blocking and reporting.
 - Never present proximity or estimated connection as proof of biological relationship.
+- Label synthetic demo content clearly.
 - Real genetic or location-based features require privacy, security and legal review.
 
-## Current prototype
+## Current development baseline
 
-KIN v0.1 is an exploratory clickable prototype centred on consent-first nearby discovery / Radar. It uses synthetic demo data and is not production-ready. It has no real DNA analysis, verified relatives, real location matching, production authentication, server-enforced consent or production backend. Preserve the useful Radar and consent foundation while developing the visual origin-discovery core.
+The active development baseline is the repository-root application aligned with the six-day Lovable sprint completed on 6 November 2026. The earlier Radar-first implementation under `demo/lovable-mvp/` is retained for reference only.
+
+The current build is an exploratory frontend prototype, not a production service. It uses synthetic/demo content and browser-local state in parts of the experience. It does not provide real DNA analysis, verified relatives, live location matching, production authentication, server-enforced consent or a production backend.
 
 ## Product promise
 
