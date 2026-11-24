@@ -1,51 +1,41 @@
-# KIN — Development Roadmap
+# KIN — Product and engineering roadmap
 
-This roadmap reflects the current product direction. It is a plan, not a claim that the listed work is implemented.
+This roadmap describes intended sequencing, not completed functionality or a delivery commitment.
 
-## v0.1 — Existing Radar prototype
+## Current baseline — clickable prototype
 
-The existing exploratory prototype includes onboarding, a simulated nearby-discovery flow, synthetic matches, mutual-reveal demo, messaging, privacy controls and mock services.
+The active repository-root app demonstrates the origin-first direction, including My Origins, map and migration-story experiences, optional DNA concept screens and secondary social-discovery flows. User-entered origin/story data is stored locally in the browser. Some social interactions use synthetic fixtures and simulated state.
 
-**Limitations:** no real DNA analysis, verified relatives, real location matching, production authentication, server-enforced consent, moderation backend or production database. Demo scores, distances and matches are fictional.
+The older Radar-first implementation is retained under `demo/lovable-mvp/` for reference.
 
-Preserve reusable Radar, consent/privacy flows, routes, components and tests.
+## Next — make the core experience credible
 
-## v0.2 — Visual Origin Discovery core
+1. Validate My Origins and migration-story journeys with adult users.
+2. Improve source/provenance clarity: user-reported, documented and DNA-derived must remain distinct.
+3. Review map behaviour, place matching and accessibility.
+4. Add end-to-end tests for the key origin and consent journeys.
+5. Remove ambiguity between demo state, local user content and future service capabilities.
 
-1. **My Origins** — an inviting personal origin overview.
-2. **Interactive Origin Map** — geography and places connected to the user's story.
-3. **Migration Stories** — visual journeys with source/provenance labels.
-4. **My Family Story** — narratives, memories and documented sources.
-5. **Mobile-first onboarding** — show value without requiring a DNA test.
+## Then — technical foundation
 
-## Secondary feature — KIN Radar
+1. Agree domain model and API contracts before implementing a production backend.
+2. Design account lifecycle, authentication and durable storage.
+3. Enforce consent, reveal, blocking, deletion and rate limits server-side.
+4. Define moderation, abuse response, audit and operational monitoring.
+5. Complete privacy impact, security and legal review before real genetic or precise location data is processed.
 
-Keep Radar as a playful add-on, not the main product. Improve its fit with the wider KIN experience while preserving opt-in visibility, privacy-first discovery and mutual consent. Proximity is not kinship. Synthetic matches and distances must be labelled as demo data.
+## Optional DNA enrichment
 
-## Optional DNA Discovery
+Design provider-neutral flows. DNA is optional for users and no provider integration is currently connected. Any provider relationship requires verified technical access and a direct agreement. Do not assume an API, SDK, partnership or commercial arrangement.
 
-Design a provider-neutral DNA journey. DNA is central to positioning but optional for users. Do not assume provider APIs or SDKs exist. Avoid raw DNA storage by default. Clearly distinguish user-reported origins, documented genealogy and DNA-derived estimates. Real genetic data requires legal, privacy and security review.
+## Secondary social discovery — KIN Radar
 
-## Partnership direction
+Retain Radar as a playful, opt-in extra. Proximity is not proof of kinship. Real location matching, identity reveal and contact require a carefully designed privacy and safety model; demo interactions are not production controls.
 
-Potential discussions—not confirmed partnerships:
-- MyHeritage — genealogy, family history and DNA.
-- Ancestry — genealogy, family history and DNA.
-- Snapchat — possible future social/place-based interaction opportunity related to Radar.
+## Validation gates
 
-No partnership, endorsement, integration, funding or API access is confirmed. Any Snapchat teaser must be labelled as a future possibility.
-
-## Six-day prototype sprint
-
-1. Product definition and technical audit.
-2. Onboarding, profile and visual identity.
-3. Origin map, geography and migration stories.
-4. Social discovery and KIN Radar as secondary feature.
-5. Optional DNA journey and partner-facing explanation.
-6. Quality, testing, privacy boundaries and partner presentation.
-
-## Validation and release gates
-
-- Test the main discovery journey with adult users; measure completion, repeat interest, trust and referral intent.
-- Research alternatives and novelty honestly.
-- Do not call KIN production-ready until authentication, secure backend enforcement, moderation/reporting, privacy/security review, data rights and end-to-end tests are addressed.
+- Users understand the value of KIN without a DNA test.
+- Users can distinguish their own stories, documented sources and estimates.
+- The origin journey is usable on mobile and accessible.
+- Consent and privacy expectations are understood and testable.
+- The product has a reviewed threat model and credible backend/security plan before any real-world pilot.

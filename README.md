@@ -1,75 +1,139 @@
-# KIN — Visual Origin Discovery & Social Connection
+# KIN
 
 **Discover where you come from. Connect with where you belong.**
 
-KIN is a mobile-first product concept exploring a more visual, accessible and social way to discover personal origins, family history and human connections.
+KIN is a mobile-first product concept exploring a more visual, accessible and social way to discover personal origins, family history and meaningful human connections.
 
-KIN is not a conventional digital family tree. Its primary experience centres on origin discovery: personal origin maps, geography, migration stories and a personal family story. DNA can enrich the experience, but a DNA test is optional. Social discovery is opt-in, with **KIN Radar retained as a secondary feature**.
+KIN is not a conventional digital family tree. The product direction is **origin discovery first**: personal origins, maps, migration stories and a personal family story. DNA is an optional enrichment path. KIN Radar remains a playful, secondary social-discovery feature.
 
-> **Product principle:** Origins give KIN substance. Radar gives KIN playfulness. DNA creates a strategic partnership opportunity.
+> **Origins give KIN substance. Radar gives it playfulness. DNA creates a strategic partnership opportunity.**
 
-## Product pillars
+<p align="center">
+  <a href="https://id-preview--3f3b6825-eb35-41bb-87e2-874a0e652f85.lovable.app"><strong>Open the live prototype</strong></a>
+  ·
+  <a href="docs/PRODUCT-VISION.md">Product vision</a>
+  ·
+  <a href="docs/IMPLEMENTATION-STATUS.md">Implementation status</a>
+  ·
+  <a href="docs/DEVELOPER-GUIDE.md">Developer guide</a>
+</p>
 
-1. **Visual Origin Discovery (core):** My Origins, Interactive Origin Map, Migration Stories and My Family Story.
-2. **DNA Discovery (optional):** a central enrichment and partnership path, without making DNA testing a requirement.
-3. **Social Connection:** privacy-first discovery, user-controlled visibility and mutual consent. KIN Radar is a secondary, playful nearby-discovery feature.
+## At a glance
 
-## KIN Radar
+| Area | Direction |
+|---|---|
+| Core experience | Visual origin discovery |
+| Key experiences | My Origins, Origin Map, Migration Stories |
+| DNA | Optional, provider-neutral enrichment |
+| Social | Consent-first connection; Radar is secondary |
+| Current maturity | Clickable prototype / proof of concept |
+| Production status | **Not production-ready** |
 
-Radar remains part of KIN. It is not the main product or homepage. It may help users discover potential KIN connections nearby, but proximity is not proof of family relationship. Identity disclosure and contact require mutual consent. Demo scores, distances, profiles and matches are synthetic and must never be represented as real.
+## Try KIN
 
-## Partnership direction — no partnerships currently implied
+**Live demo:** [Open KIN](https://id-preview--3f3b6825-eb35-41bb-87e2-874a0e652f85.lovable.app)
 
-KIN is designed to be provider-neutral and may explore future strategic discussions with:
-- **MyHeritage** — family history, genealogy and DNA services.
-- **Ancestry** — family history, genealogy and DNA services.
-- **Snapchat** — a possible longer-term social / place-based discovery opportunity related to Radar.
+The prototype is intended for product exploration and feedback. Use fictional/demo information only. Do not enter real genetic, medical, identity or sensitive family data.
 
-These are prospective partners only. There are no confirmed partnerships, endorsements, APIs, SDKs, integrations, investments or development grants. Any provider integration or commercial arrangement requires direct agreement and verified technical access. A Snapchat reference must be clearly labelled as a future possibility, not an existing integration.
+## What is implemented
 
-## Prototype status: v0.1
+The active application at the repository root includes the current origin-first direction and prototype journeys for:
 
-This repository currently documents an exploratory clickable proof of concept centred on consent-first nearby discovery. It uses synthetic data. It is not a production app and does not provide real DNA analysis, verified relatives, real location matching, production authentication, server-enforced consent or a production backend.
+- 18+ self-confirmation gate (not identity or age verification).
+- My Origins and user-entered origin information.
+- Origin map and migration-story experiences.
+- Optional DNA discovery concept screens (not a DNA integration).
+- Secondary Radar/discovery, consent/reveal and chat demo flows.
+- Local demo state and automated unit/component tests.
 
-The existing prototype is a foundation to evolve. Preserve reusable Radar, consent/privacy flows, routes, components and tests while developing the new primary origin-discovery experience.
+The repository also contains `demo/lovable-mvp/`, an earlier Radar-first prototype retained for historical comparison. **The repository-root application is the active development target.** The legacy demo is not the product source of truth.
 
-## Trust and privacy principles
+## Important: prototype limitations
 
-- DNA is optional and requires explicit, informed consent.
-- Do not store raw DNA files by default; investigate provider-mediated options.
-- Distinguish user-reported origins, documented genealogy and DNA-derived estimates.
-- No automatic public disclosure of identity, DNA results or family connections.
-- Provide user-controlled visibility, consent withdrawal, blocking and reporting.
-- Never imply that proximity, shared geography or an estimate proves biological kinship.
-- Label all synthetic demo data clearly.
-- Real genetic or location-based features require specialist privacy, security and legal review before launch.
+This is an exploratory frontend prototype, not a production service. Depending on the feature, data is synthetic, user-entered or stored locally in the browser. It does not provide:
 
-## Development priorities
+- Real DNA analysis, verified genealogy or biological kinship inference.
+- Confirmed partnerships, provider APIs, SDKs or live DNA integrations.
+- Production user accounts, authentication or a production backend.
+- Secure server-side consent enforcement or a production matching engine.
+- Real-time location matching, identity verification or production moderation.
+- A production-grade privacy, security or legal framework.
 
-1. Build the visual origin-discovery core and a clear first-use journey.
-2. Preserve and refine Radar as a secondary feature.
-3. Design an optional, provider-neutral DNA discovery journey.
-4. Improve privacy, consent and synthetic-data boundaries.
-5. Validate the experience with users and prepare a credible partner proposition.
+A visual match, shared place, estimate or proximity must never be interpreted as proof of family relationship.
 
-## Run the existing prototype
+## Technology
 
-```sh
-npm i
-npm run dev
-npm run lint
-npm test
-npm run build
+The active application uses:
+
+- React 19 and TypeScript
+- TanStack Start / TanStack Router
+- Vite
+- Tailwind CSS
+- Vitest and Testing Library
+
+The exact dependency versions and scripts are defined in the root `package.json` and `bun.lock`.
+
+## Run locally
+
+Requirements: Git and [Bun](https://bun.sh/) (use a current Bun 1.x release).
+
+```bash
+git clone https://github.com/Future-By-Fie/KIN.git
+cd KIN
+
+# The active application is at the repository root.
+bun install --frozen-lockfile
+bun run dev
 ```
 
-## Collaboration & rights
+Then open the local URL printed by Vite.
 
-This public repository is available for evaluation; it is **not currently offered under an open-source license**. We welcome thoughtful technical and strategic conversations. Contributions and reuse require prior written agreement. See [Collaboration & intellectual property](COLLABORATION.md) and [Build with us](https://www.future-by-fie.com/#partners).
+Useful checks:
 
-*Future by Fie · Independent innovation studio · Malmö, Sweden*
+```bash
+bun run test
+bun run lint
+bun run build
+```
 
-## Partner presentation
+For setup details, repository layout and troubleshooting, see the [Developer guide](docs/DEVELOPER-GUIDE.md).
 
-[View the 10-slide KIN Partner Pitch](https://www.canva.com/d/5lCdTn56vRTGcV5) · [Read the partner brief](docs/partner-pitch.md) · [Open the current demo](https://id-preview--3f3b6825-eb35-41bb-87e2-874a0e652f85.lovable.app)
+## Repository map
 
-The presentation introduces the concept and partnership opportunity. The linked prototype is an early frontend-only demo using local browser storage and demo/user-entered content; it is not a production service and does not include live DNA analysis, verified genealogy, live matching or partner integrations.
+```text
+KIN/
+├── .github/                 # CI and contribution templates
+├── docs/                    # Product, architecture and engineering notes
+├── src/
+│   ├── components/          # Shared and product UI
+│   ├── lib/kin/              # Domain logic, demo services and tests
+│   └── routes/               # TanStack file-based routes
+├── public/                  # Static assets
+├── demo/lovable-mvp/        # Earlier Radar-first prototype (legacy)
+├── package.json
+└── bun.lock
+```
+
+## Product and engineering documentation
+
+- [Product vision](docs/PRODUCT-VISION.md) — what KIN is intended to become.
+- [Implementation status](docs/IMPLEMENTATION-STATUS.md) — what exists today vs. what remains.
+- [Developer guide](docs/DEVELOPER-GUIDE.md) — setup, scripts and code orientation.
+- [Architecture](docs/ARCHITECTURE.md) — current technical boundaries and future seams.
+- [Roadmap](docs/ROADMAP.md) — proposed product sequence, not a delivery promise.
+- [Privacy principles](docs/PRIVACY.md) — principles and known prototype limitations.
+- [Next engineering steps](docs/NEXT_STEPS.md) — concrete technical review priorities.
+
+## Partnership direction
+
+KIN may explore future discussions with companies in genealogy, DNA and social technology, including MyHeritage, Ancestry and Snapchat. These are **prospective ideas only**. No partnership, endorsement, investment, API access, SDK access or integration is currently implied or claimed.
+
+## Contributing and project rights
+
+This repository is public for product and technical evaluation, but **it is not currently distributed under an open-source license**. Public visibility does not grant permission to reuse, redistribute or commercially exploit the code. If you are interested in contributing, collaborating or helping take KIN further, please read [CONTRIBUTING.md](CONTRIBUTING.md) and contact the project owner before submitting substantial work.
+
+KIN is an independent project by **Future by Fie**, Malmö, Sweden.
+
+---
+
+*The demo is a conversation starter, not a claim of production readiness. We welcome thoughtful engineering feedback, product critique and collaboration proposals.*

@@ -1,0 +1,38 @@
+name: Bug report
+description: Report a reproducible issue in the KIN prototype
+title: "[Bug]: "
+labels: ["bug", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: "Please use fictional/demo data only. Do not include personal, genetic or sensitive family information."
+  - type: textarea
+    id: summary
+    attributes:
+      label: What happened?
+      description: A clear description of the problem.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      placeholder: "1. Open ... 2. Select ... 3. Observe ..."
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Browser/device
+      placeholder: "e.g. Chrome on Android"
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Screenshots or console output
+      description: Remove personal data and secrets before sharing.
