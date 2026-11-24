@@ -1,41 +1,54 @@
-# KIN — UX
+# KIN — UX Direction
 
-## Primary flow
+## Product experience principle
 
-**Landing → Location → Radar → Match → Mutual Reveal → Chat**
+**Discovery before identity. Origins first. Radar second.**
 
-### Landing
+KIN should feel like an inviting personal discovery experience, not a genealogy database and not a nearby-people radar with ancestry-themed decoration. The first session must offer a meaningful experience even when the user has no DNA test, no existing family tree and no nearby matches.
 
-**KIN — Discover connections before identities.**
+## Primary journey — discover your origins
 
-“What if someone you passed today was already part of your story?”
+1. **Welcome / 18+ self-confirmation** — introduce KIN and explain the experience. The current gate is self-confirmation only; it is not age or identity verification.
+2. **My Origins** — invite the user to add a place, region or family-origin detail that they know or want to explore.
+3. **Origin Map** — turn entered origin places into a clear visual overview. Make it obvious which information is user-entered, documented or estimated.
+4. **Migration Stories** — help the user explore or record how people and family stories connect places and generations. Never invent a migration route or present an estimate as fact.
+5. **My Family Story** — give the user a personal place to bring together memories, narratives and sources.
+6. **Optional DNA Discovery** — explain how DNA might enrich the picture, without making a test a prerequisite or implying a live provider integration.
 
-### Radar
+## Secondary journey — social discovery
 
-The main surface should feel like social discovery rather than a dashboard: radar/map field, moving signals, nearby connection count, compact match cards and bottom navigation.
+KIN Radar remains a playful, optional feature:
+- Discover potential connections only when the user chooses to participate.
+- Keep visibility and location controls understandable and user-controlled.
+- Use approximate signals; do not expose another person's precise location.
+- Require mutual consent before revealing identities or enabling contact.
+- Clearly label all synthetic matches, distances and scores in the prototype.
+- Never imply that proximity or a shared origin proves a family relationship.
 
-Example: **Possible 2nd cousin · 420 m away · 87% connection confidence**.
+## Information architecture
 
-### Match
+**Primary navigation:** My Origins · Origin Map · Migration Stories · My Family Story.
 
-Show possible relationship, approximate distance, connection confidence and a synthetic explanation. Actions: **Explore connection** / **Not now**.
+**Secondary navigation / features:** DNA Discovery · KIN Radar · Connections · Privacy & Visibility · Settings.
 
-### Mutual reveal
+The exact navigation labels may evolve with usability testing, but the hierarchy must remain clear: origin discovery is the core; DNA is optional; Radar is secondary.
 
-> You may share a family connection.
->
-> You don't know who they are. They don't know who you are.
+## Content and provenance language
 
-The signature action is **Ask to connect**. After simulated mutual acceptance, the prototype reveals a synthetic identity.
+Use clear labels such as:
+- **Your information** — entered or described by the user.
+- **Documented** — linked to a source or record, with the source visible.
+- **Estimated** — inferred or approximate, with uncertainty explained.
+- **Demo** — fictional example data used to demonstrate the interface.
 
-### Chat
+Avoid unsupported labels such as “verified relative”, “DNA match” or “87% related” unless a real, validated method and appropriate evidence exist.
 
-Suggested opener: “Hey — apparently we might be family 👋”
+## Visual and interaction direction
 
-## Privacy
+Retain KIN's modern, mobile-first, visually engaging identity. Use maps, timelines, story cards and progressive disclosure to make complex origin information approachable. Prioritise readability, accessibility, clear empty states and a calm sense of discovery over decorative motion.
 
-Discovery visibility, approximate location, notifications, identity reveal, consent and demo mode remain accessible.
+The social-discovery surfaces may feel more playful and immediate, but must not take over the primary experience or obscure privacy choices.
 
-## Visual direction
+## Prototype boundary
 
-Dark immersive surfaces, electric-yellow accent, rounded translucent cards, expressive typography, full-screen moments and playful micro-interactions. KIN deliberately flirts with the energy of camera-first social apps without copying Snapchat branding, Ghost iconography, proprietary assets or exact UI.
+The current UI demonstrates journeys; it does not establish production functionality. Browser-local state, synthetic people, simulated matching and demo consent are not production services or security controls. Design copy must not imply otherwise.
