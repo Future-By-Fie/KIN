@@ -1,7 +1,8 @@
-# KIN — Implementation status
+# KIN — Implementation Status
 
-Last reviewed: 2026-11-06  
-Scope: repository branch `backup/lovable-day6-2026-11-06`
+Last reviewed: 2026-11-24  
+Canonical development branch: `main`  
+Baseline: six-day Lovable sprint completed 2026-11-06
 
 This document separates the current prototype from the intended product. It is a handover snapshot, not a production-readiness certification.
 
@@ -10,27 +11,28 @@ This document separates the current prototype from the intended product. It is a
 The intended product is **origin discovery first**:
 
 1. My Origins
-2. Interactive Origin Map
+2. Origin Map
 3. Migration Stories
 4. My Family Story
-5. Optional DNA enrichment
+5. Optional DNA Discovery
 6. KIN Radar as a secondary social-discovery feature
 
-## Current prototype
+## Repository source of truth
 
-The active app is the repository-root application. The clickable prototype contains origin-focused journeys and supporting demo experiences. Some screens use synthetic fixtures; some user-created origin content is stored locally in the browser.
+The active application is the repository-root application. The directory `demo/lovable-mvp/` preserves an earlier Radar-first prototype and is not the current product source of truth. New development should target the root application on `main`, unless a task explicitly establishes another branch.
 
-The legacy `demo/lovable-mvp/` folder preserves an earlier Radar-first prototype and is not the current source of truth.
+## Current prototype capabilities
 
-## Capability boundaries
+The root application contains origin-focused journeys and supporting demo experiences. Some screens use synthetic fixtures; some user-created origin/story content is stored locally in the browser. Refer to the code and tests for the exact implementation of each screen.
 
 | Capability | Current status |
 |---|---|
-| 18+ self-confirmation | Demo gate only; not age verification |
+| 18+ self-confirmation | Demo gate only; not age or identity verification |
 | My Origins | Frontend/local demo experience |
-| Origin map | Prototype visualization; not a verified geographic record |
-| Migration stories | User-entered/demo content; not independently verified |
-| DNA discovery | Concept/UI only; no DNA analysis or provider integration |
+| Origin Map | Prototype visualization; not a verified geographic record |
+| Migration Stories | User-entered/demo content; not independently verified |
+| My Family Story | Prototype/personal-story experience; not a verified family record |
+| DNA Discovery | Concept/UI only; no DNA analysis or provider integration |
 | KIN Radar | Secondary demo feature; no production location matching |
 | Matching | Synthetic/demo logic; not a real kinship inference engine |
 | Consent and reveal | Demonstration flow; not server-enforced security |
@@ -39,9 +41,11 @@ The legacy `demo/lovable-mvp/` folder preserves an earlier Radar-first prototype
 | Backend/database | No production backend |
 | Moderation/block/report | Not a production enforcement or response service |
 
-## Quality evidence
+## Quality and CI
 
-The final Lovable sprint reported passing tests, lint, type checking and production build for its tested project state. These are tool-reported results, not an independent verification of this GitHub branch. GitHub Actions is configured to run tests, lint and build for both the active root app and legacy demo; check the Actions tab for the result of the current commit.
+GitHub Actions is configured to run tests, lint and build checks for both the active root application and the retained legacy demo. Check the Actions tab for the current commit's actual result. A green legacy-demo check does not replace a green active-app check.
+
+The six-day sprint's reported checks and the subsequent GitHub CI configuration are evidence of a buildable prototype, not proof of production security, scalability, data integrity or readiness for real users.
 
 ## Critical work before production
 
@@ -56,4 +60,4 @@ The final Lovable sprint reported passing tests, lint, type checking and product
 
 ## Handover recommendation
 
-A new technical lead should first run the root app locally, review `src/lib/kin/`, map the key user journeys, run the CI checks and agree a backend/domain architecture before starting a large rewrite.
+A new technical contributor should first run the root app locally, review `src/lib/kin/`, map the primary user journey, run the CI checks and agree a backend/domain architecture before starting a large rewrite.
